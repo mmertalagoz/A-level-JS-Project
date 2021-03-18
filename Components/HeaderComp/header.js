@@ -5,7 +5,15 @@ headerTemp.innerHTML = `
 @import url('http://${location.host}/Components/HeaderComp/header.css')
 </style>
 
-<header>Our Header</header>
+	<header>
+			<div class="container">
+				<div class="menuDiv">
+					<div id="Home"><a href="#">Home</a></div>
+					<div id="Favorites"><a href="#">Favorites</a></div>
+					<div id="About"><a href="#">About</a></div>
+				</div>
+			</div>
+	</header>
 `;
 class AppHeader extends HTMLElement {
 	constructor() {

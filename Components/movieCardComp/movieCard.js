@@ -2,6 +2,7 @@ const movieCard = document.createElement('template');
 movieCard.innerHTML = `
 <style>
 @import url('http://${location.host}/Components/movieCardComp/movieCard.css')
+
 </style>
 
 <div class="movie-container">
@@ -10,7 +11,10 @@ movieCard.innerHTML = `
 			</div>
 			<div class="info">
 				<h3 class="title"></h3>
-				<p></p>
+				<p class='descripton'>
+				//p etiketi icin
+					<slot/>
+				</p>
 				<div class="action_container">
 					<i class="isFavourite fa fa-heart"></i>
 					<a target="_blank" class="button">IMDB</a>
@@ -35,9 +39,10 @@ class MovieCards extends HTMLElement {
 				'h3.title'
 			).innerText = this.getAttribute('title');
 
-			this.shadowRoot.querySelector('movie-card');
-
-			// this.shadowRoot.querySelector('img').src = this.getAttribute('poster');
+			this.shadowRoot.querySelector('p').innerHTML = this.getAttribute(
+				'description'
+			);
+			this.shadowRoot.querySelector('img').src = this.getAttribute('image');
 
 			if (this.getAttribute('isFavourite') == 'true') {
 				this.isFavourite = true;

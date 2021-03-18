@@ -14,16 +14,17 @@ async function searchMovie() {
 	);
 	const data = await request.json();
 	const movies = await data.map(({ show }) => {
+		console.log(show.summary);
 		//i did to manipulation for data its a easy.
 		return {
 			title: show.name,
 			description: show.summary,
-			image: show,
+			image:
+				show.image == null ? 'assets/image/default.png' : show.image.medium,
 			language: show.language,
 			isFavourite: false,
 		};
 	});
-
 	prepareMovies(movies);
 }
 
@@ -31,9 +32,12 @@ function prepareMovies(movies) {
 	movies.forEach((movie) => {
 		let movie_card = document.createElement('movie-card');
 		movie_card.setAttribute('title', movie.title);
+		movie_card.setAttribute('description', movie.description);
 		movie_card.setAttribute('image', movie.image);
+		movie_card.setAttribute('class', 'movie_card');
+
 		movie_card.setAttribute('isFavourite', movie.isFavourite);
-		movie_card.innerHTML = movie.description;
+		// movie_card.innerHTML = movie.description;
 		document.querySelector('#movies').append(movie_card);
 	});
 }
